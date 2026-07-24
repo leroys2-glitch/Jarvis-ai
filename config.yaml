@@ -1,0 +1,69 @@
+# Jarvis AI Configuration
+
+assistant:
+  name: "Jarvis"
+  personality: "Professional, helpful, and witty"
+  response_style: "formal"
+  language: "en-US"
+
+voice:
+  enabled: true
+  engine: "pyttsx3"
+  rate: 150  # words per minute
+  volume: 1.0  # 0.0 to 1.0
+  voice_type: "male"  # male or female
+
+speech_recognition:
+  enabled: true
+  language: "en-US"
+  timeout: 10  # seconds
+  phrase_time_limit: 10  # seconds
+
+features:
+  tasks:
+    enabled: true
+    storage: "local"  # local or cloud
+  calendar:
+    enabled: true
+    service: "google_calendar"  # google_calendar, outlook, etc
+  email:
+    enabled: true
+    service: "gmail"  # gmail, outlook, etc
+  smart_home:
+    enabled: false
+    platform: "home_assistant"  # home_assistant, smartthings, etc
+    hub_url: "http://localhost:8123"
+  data_analysis:
+    enabled: true
+    max_file_size: 100  # MB
+
+integrations:
+  weather:
+    enabled: true
+    api: "openweathermap"
+    api_key: "YOUR_API_KEY_HERE"
+  news:
+    enabled: true
+    api: "newsapi"
+    api_key: "YOUR_API_KEY_HERE"
+  music:
+    enabled: false
+    service: "spotify"  # spotify, apple_music, etc
+    api_key: "YOUR_API_KEY_HERE"
+
+contextual:
+  remember_history: true
+  history_limit: 100  # number of messages to remember
+  learn_user_preferences: true
+  prediction_enabled: true
+
+security:
+  require_authentication: false
+  encryption_enabled: false
+  log_conversations: false
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "logs/jarvis.log"
+  max_file_size: 10  # MB
+  backup_count: 5
