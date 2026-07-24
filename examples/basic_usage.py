@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 """
-Basic usage example for Jarvis AI Assistant
+Example of basic Jarvis usage
 """
 
 from jarvis import JarvisAI
@@ -9,53 +8,47 @@ from jarvis import JarvisAI
 def main():
     # Initialize Jarvis
     jarvis = JarvisAI(name="Jarvis")
-
-    print("=" * 50)
-    print(f"Welcome to {jarvis.name}!")
-    print("=" * 50)
-
+    
+    print("=" * 60)
+    print("Jarvis AI - Basic Usage Example")
+    print("=" * 60)
+    
     # Example 1: Basic conversation
-    print("\n--- Example 1: Basic Conversation ---")
+    print("\n[1] Basic Conversation:")
     response = jarvis.process("Hello Jarvis")
     print(f"User: Hello Jarvis")
-    print(f"Jarvis: {response}\n")
-
+    print(f"Jarvis: {response}")
+    
     # Example 2: Task management
-    print("--- Example 2: Task Management ---")
-    jarvis.create_task("Finish project report", priority="high")
-    jarvis.create_task("Review code", priority="normal")
-    jarvis.create_task("Update documentation", priority="low")
-
-    print("\nCurrent tasks:")
+    print("\n[2] Task Management:")
+    jarvis.create_task("Complete project report", priority="high")
+    jarvis.create_task("Review code changes", priority="normal")
+    jarvis.create_task("Deploy to production", priority="high")
+    
+    print("Tasks created:")
     for task in jarvis.list_tasks():
-        status = "✓" if task["completed"] else "○"
-        print(f"  {status} [{task['priority']}] {task['task']}")
-
-    # Complete a task
-    jarvis.complete_task(1)
-    print("\nAfter completing first task:")
-    for task in jarvis.list_tasks():
-        status = "✓" if task["completed"] else "○"
-        print(f"  {status} [{task['priority']}] {task['task']}")
-
-    # Example 3: Time query
-    print("\n--- Example 3: Time Query ---")
-    response = jarvis.process("What time is it?")
-    print(f"User: What time is it?")
-    print(f"Jarvis: {response}\n")
-
-    # Example 4: Voice mode
-    print("--- Example 4: Voice Mode ---")
+        print(f"  • {task['task']} (Priority: {task['priority']})")
+    
+    # Example 3: Voice mode
+    print("\n[3] Voice Mode:")
     jarvis.enable_voice()
-    print("Voice mode enabled!")
+    print(f"Voice mode enabled: {jarvis.voice_enabled}")
     jarvis.disable_voice()
-    print("Voice mode disabled.\n")
-
-    # Display conversation history
-    print("--- Conversation History ---")
+    print(f"Voice mode enabled: {jarvis.voice_enabled}")
+    
+    # Example 4: Conversation history
+    print("\n[4] Conversation History:")
+    jarvis.process("What time is it?")
+    jarvis.process("Tell me a joke")
+    
     history = jarvis.get_conversation_history()
-    for i, entry in enumerate(history, 1):
-        print(f"{i}. [{entry['role'].upper()}] {entry['message']}")
+    print(f"Total exchanges: {len(history)}")
+    for entry in history[-4:]:
+        print(f"  {entry['role'].upper()}: {entry['message'][:50]}...")
+    
+    print("\n" + "=" * 60)
+    print("Basic example complete!")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
